@@ -10,15 +10,17 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
+    private  val INITIAL_TIME = 60
+
     internal lateinit var tapMeButton : Button
     internal lateinit var timeTextView : TextView
     internal lateinit var counterTextView : TextView
     internal var counter = 0
-    internal var time = 60
+    internal var time = INITIAL_TIME
 
     internal var appStarted = false
     internal lateinit var countdownTimer : CountDownTimer
-    internal val initialCountDownTimer: Long = 60000
+    internal val initialCountDownTimer: Long = 10000
     internal val intervalCountDownTimer: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,9 +71,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun endGame(){
-        Toast.makeText(this,getString(R.string.endGame), Toast.LENGTH_LONG ).show()
+        Toast.makeText(this,getString(R.string.endGame, counter), Toast.LENGTH_LONG ).show()
+        resetGame()
     }
     private fun resetGame() {
+        //RESET PUNTUACIÓ A ZERO
+        counter = 0
+        counterTextView.text = counter.toString()
+        //REINICIALITZAR EL COMPTARDOR
+        time = INITIAL_TIME
+        timeTextView.text = time.toString()
+        initCountdown()
 
+        //GAME STARTED A FALSE
+        appStarted = false
     }
 }
