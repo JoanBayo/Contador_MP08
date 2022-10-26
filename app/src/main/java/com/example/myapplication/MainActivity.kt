@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.IntentSender.OnFinished
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     internal var appStarted = false
     internal lateinit var countdownTimer : CountDownTimer
-    internal val initialCountDownTimer: Long = 10000
+    internal val initialCountDownTimer: Long = 60000
     internal val intervalCountDownTimer: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         timeTextView = findViewById(R.id.timeTextView)
         counterTextView = findViewById(R.id.counterTextView)
 
-        // Actualitzar o defini valor inicial del counterTextViu -> counterTextViu = conuter -> 0
 
 
         tapMeButton.setOnClickListener{ view ->
@@ -59,12 +59,32 @@ class MainActivity : AppCompatActivity() {
             val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce)
             view.startAnimation(bounceAnimation)
             incrementCounter()
-//            val blinkAnimation = AnimationUtils.loadAnimation(this.counterTextView, R.anim.blink)
-//            view.startAnimation(blinkAnimation)
 
         }
         timeTextView.text = getString(R.string.timeText, time)
         counterTextView.text = getString(R.string.Score,counter)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.actionAbout) {
+            showInfo()
+        }
+        return true
+    }
+
+    private fun showInfo() {
+        val dialogTitle = getString(R.string.aboutTitle, BuildConfig.VERSION_NAME)
+        val dialogMessage = getString(R.string.aboutMessage)
+
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle(dialogTitle).setMessage(dialogMessage).create().show()
     }
 
     private fun startGame() {
@@ -89,7 +109,6 @@ class MainActivity : AppCompatActivity() {
     private fun incrementCounter(){
         counter += 1
         counterTextView.text = getString(R.string.Score,counter)
-
 
     }
 

@@ -4,4 +4,8 @@
     <string name="timeText">Temps: %1$d s</string>
     <string name="endGame">\ Temps acabat \nPuntuació final: %1$d</string>
     <string name="Score">Puntuació: %1$d</string>
+    <string name="aboutMenu">About</string>
+    <string name="aboutTitle">Time Fighter %1$s</string>
+    <string name="aboutMessage">Craeat per Joan Bayo Benito,\n Github: https://github.com/JoanBayo/Contador_MP08</string>
+
 </resources>
