@@ -29,8 +29,8 @@
 
     <Button
         android:id="@+id/tapMeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="119dp"
+        android:layout_height="75dp"
         android:text="@string/touchme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
