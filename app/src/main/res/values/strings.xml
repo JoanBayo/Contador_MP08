@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="touchme">Tocam</string>
-    <string name="timeText">Temps disponible: %1$d</string>
-    <string name="endGame">Temps acabat: %1$d</string>
+    <string name="timeText">Temps: %1$d s</string>
+    <string name="endGame">\ Temps acabat \nPuntuació final: %1$d</string>
+    <string name="Score">Puntuació: %1$d</string>
 </resources>

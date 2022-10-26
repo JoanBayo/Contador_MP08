@@ -3,11 +3,16 @@ package com.example.myapplication
 import android.content.IntentSender.OnFinished
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,15 +51,20 @@ class MainActivity : AppCompatActivity() {
         // Actualitzar o defini valor inicial del counterTextViu -> counterTextViu = conuter -> 0
 
 
-        tapMeButton.setOnClickListener{
+        tapMeButton.setOnClickListener{ view ->
             if(!appStarted) {
                 startGame()
 
             }
+            val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+            view.startAnimation(bounceAnimation)
             incrementCounter()
+//            val blinkAnimation = AnimationUtils.loadAnimation(this.counterTextView, R.anim.blink)
+//            view.startAnimation(blinkAnimation)
+
         }
-        //Següent video:https://www.youtube.com/watch?v=Zt4nWQ_JTiM&list=PLyasg1A0hpk21ORaTE8r_mA8YbMAZI76e&index=7
         timeTextView.text = getString(R.string.timeText, time)
+        counterTextView.text = getString(R.string.Score,counter)
     }
 
     private fun startGame() {
@@ -66,7 +76,8 @@ class MainActivity : AppCompatActivity() {
         countdownTimer = object : CountDownTimer(initialCountDownTimer, intervalCountDownTimer){
             override fun onTick(millisUntilFinished: Long) {
                 val timeLeft = millisUntilFinished / 1000
-                timeTextView.text = timeLeft.toString()
+                time = timeLeft.toInt()
+                timeTextView.text = getString(R.string.timeText,time)
             }
 
             override fun onFinish() {
@@ -77,8 +88,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun incrementCounter(){
         counter += 1
-        counterTextView.text = counter.toString()
+        counterTextView.text = getString(R.string.Score,counter)
+
+
     }
+
+
 
     private fun endGame(){
         Toast.makeText(this,getString(R.string.endGame, counter), Toast.LENGTH_LONG ).show()
@@ -87,10 +102,10 @@ class MainActivity : AppCompatActivity() {
     private fun resetGame() {
         //RESET PUNTUACIÓ A ZERO
         counter = 0
-        counterTextView.text = counter.toString()
+        counterTextView.text = getString(R.string.Score,counter)
         //REINICIALITZAR EL COMPTARDOR
         time = INITIAL_TIME
-        timeTextView.text = time.toString()
+        timeTextView.text = getString(R.string.timeText, time)
         initCountdown()
 
         //GAME STARTED A FALSE
