@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">TFighter</string>
     <string name="touchme">Tocam</string>
     <string name="timeText">Temps: %1$d s</string>
     <string name="endGame">\ Temps acabat \nPuntuació final: %1$d</string>
